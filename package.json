@@ -1,0 +1,10 @@
+{
+  "name": "ts-training",
+  "version": "1.0.0",
+  "description": "typescript-training",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
+}
