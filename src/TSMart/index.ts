@@ -32,5 +32,12 @@ if (shippingAddress.match('New York')) {
 if (product?.price) {
   taxTotal = Number(product.price) * taxPercent;
   total = Number(product.price) + taxTotal + shipping;
-  console.log(`The total for this order is ${total}`);
+  console.log(`
+Product:  ${product.name}
+Address:  ${shippingAddress}
+Price:    $${product.price}
+Tax:      $${taxTotal.toFixed(2)}
+Shipping: $${shipping.toFixed(2)}
+Total:    $${total.toFixed(2)}
+`);
 }
