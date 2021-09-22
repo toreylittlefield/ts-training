@@ -22,3 +22,15 @@ if (Number(product?.price) < 25) {
   shipping = 0;
   console.log(`Free Shipping will be provided for this order since it is over $25`);
 }
+
+if (shippingAddress.match('New York')) {
+  taxPercent = 0.1;
+} else {
+  taxPercent = 0.05;
+}
+
+if (product?.price) {
+  taxTotal = Number(product.price) * taxPercent;
+  total = Number(product.price) + taxTotal + shipping;
+  console.log(`The total for this order is ${total}`);
+}
