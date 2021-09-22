@@ -1,6 +1,13 @@
 import products from './products';
 
-const productName: string = 'beanie';
+let shipping: number;
+let taxPercent: number;
+let taxTotal: number;
+let total: number;
+
+let shippingAddress: string = '555 Some Street, Some City, Some State, Some Country';
+
+const productName: string = 'fanny pack';
 const product = products.find((product) => product.name === productName);
 
 console.log(product);
