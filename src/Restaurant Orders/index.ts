@@ -10,15 +10,13 @@ const getMaxPrice = (price: PriceBracket): number => {
       return 20.0;
     case PriceBracket.High:
       return 30.0;
-    default:
-      return 10.0;
   }
 };
 /// Add your getOrders() function below:
 const getOrders = (price: PriceBracket, orders: Order[][]): Order[][] => {
   const filteredOrders: Order[][] = [];
   orders.forEach((restaurant: Order[]) => {
-    const results = restaurant.filter((order: Order) => order.price <= getMaxPrice(order.price));
+    const results = restaurant.filter((order: Order) => order.price <= getMaxPrice(price));
     filteredOrders.push(results);
   });
   return filteredOrders;
@@ -26,6 +24,6 @@ const getOrders = (price: PriceBracket, orders: Order[][]): Order[][] => {
 /// Add your printOrders() function below:
 
 /// Main
-const elligibleOrders = getOrders(PriceBracket.Low, orders);
+const elligibleOrders = getOrders(PriceBracket.High, orders);
 console.log(elligibleOrders);
 // printOrders(restaurants, elligibleOrders);
