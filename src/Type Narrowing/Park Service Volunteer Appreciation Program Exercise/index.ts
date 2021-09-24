@@ -10,7 +10,16 @@ type Volunteers = {
   activities: CombinedActivity[];
 };
 
-function combineVolunteers(volunteers: (RaccoonMeadowsVolunteers | WolfPointVolunteers)[]) {}
+function combineVolunteers(volunteers: (RaccoonMeadowsVolunteers | WolfPointVolunteers)[]) {
+  return volunteers.map((volunteer) => {
+    let { id } = volunteer;
+    if (typeof id === 'string') {
+      volunteer.id = parseInt(id, 10);
+      return volunteer;
+    }
+    return volunteer;
+  });
+}
 
 function calculateHours(volunteers: Volunteers[]) {
   return volunteers.map((volunteer) => {
@@ -27,3 +36,5 @@ function calculateHours(volunteers: Volunteers[]) {
 }
 
 const combinedVolunteers = combineVolunteers([].concat(wolfPointVolunteers, raccoonMeadowsVolunteers));
+
+console.log(combineVolunteers(combinedVolunteers));
