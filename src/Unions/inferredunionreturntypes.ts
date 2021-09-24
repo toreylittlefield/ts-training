@@ -12,3 +12,6 @@ function createUser() {
     return 'Could not create a user.';
   }
 }
+
+// the return of createUser fn can be returned as a string or User type
+const userData: string | User = createUser();
