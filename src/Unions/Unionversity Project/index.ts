@@ -13,4 +13,14 @@ type SearchEventsOptions = {
   eventType: 'courses' | 'groups';
 };
 
-const searchEvents = (options: SearchEventsOptions) => {};
+const searchEvents = (options: SearchEventsOptions) => {
+  let events: (Course | StudyGroup)[];
+  if (options.eventType === 'courses') events = courses;
+  if (options.eventType === 'groups') events = studyGroups;
+
+  const filteredEvents = events.filter((event: Course | StudyGroup) => {
+    if (typeof options.query === 'number') {
+      return options.query === event.id;
+    }
+  });
+};
