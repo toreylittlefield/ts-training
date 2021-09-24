@@ -30,4 +30,14 @@ const searchEvents = (options: SearchEventsOptions): (Course | StudyGroup)[] => 
   return filteredEvents;
 };
 
-searchEvents({ query: 2, eventType: 'groups' });
+const searchResults = searchEvents({ query: 2, eventType: 'groups' });
+
+let enrolledEvents: (Course | StudyGroup)[] = [];
+
+const enroll = (event: Course | StudyGroup) => {
+  enrolledEvents = [...enrolledEvents, event];
+};
+
+enroll(searchResults[0]);
+
+console.log(enrolledEvents);
