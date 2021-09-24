@@ -1,4 +1,4 @@
-interface Directory {
+interface Directory2 {
   addFile: (name: string) => void;
   // Define a config type member here
   config: {
@@ -9,7 +9,7 @@ interface Directory {
   };
 }
 
-class DesktopDirectory2 implements Directory {
+class DesktopDirectory2 implements Directory2 {
   config = {
     default: {
       encoding: 'utf-8',
