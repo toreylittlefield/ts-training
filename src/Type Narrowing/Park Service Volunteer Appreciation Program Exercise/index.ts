@@ -14,18 +14,37 @@ function combineVolunteers(volunteers: (RaccoonMeadowsVolunteers | WolfPointVolu
   return volunteers.map((volunteer) => {
     let { id } = volunteer;
     if (typeof id === 'string') {
-      volunteer.id = parseInt(id, 10);
-      return volunteer;
+      id = parseInt(id, 10);
     }
-    return volunteer;
+    return {
+      id,
+      name: volunteer.name,
+      activities: volunteer.activities,
+    };
   });
+}
+
+function isVerified(verified: string | boolean) {
+  if (typeof verified === 'string') {
+    return verified === 'Yes';
+  }
+  return verified === true;
+}
+
+function getHours(activity: CombinedActivity) {
+  if ('hours' in activity) return activity.hours;
+  if ('time' in activity) return activity.time;
 }
 
 function calculateHours(volunteers: Volunteers[]) {
   return volunteers.map((volunteer) => {
     let hours = 0;
 
-    volunteer.activities.forEach((activity) => {});
+    volunteer.activities.forEach((activity) => {
+      if (isVerified(activity.verified)) {
+        hours += getHours(activity);
+      }
+    });
 
     return {
       id: volunteer.id,
@@ -35,6 +54,8 @@ function calculateHours(volunteers: Volunteers[]) {
   });
 }
 
-const combinedVolunteers = combineVolunteers([].concat(wolfPointVolunteers, raccoonMeadowsVolunteers));
+const combinedVolunteers = combineVolunteers([...wolfPointVolunteers, ...raccoonMeadowsVolunteers]);
 
-console.log(combineVolunteers(combinedVolunteers));
+console.log(combineVolunteers);
+
+const result = calculateHours(combinedVolunteers);
