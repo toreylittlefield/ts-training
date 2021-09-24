@@ -59,3 +59,10 @@ const combinedVolunteers = combineVolunteers([...wolfPointVolunteers, ...raccoon
 console.log(combineVolunteers);
 
 const result = calculateHours(combinedVolunteers);
+
+function byHours(a: typeof result[0], b: typeof result[0]) {
+  return b.hours - a.hours;
+}
+
+result.sort(byHours);
+console.log({ result });
