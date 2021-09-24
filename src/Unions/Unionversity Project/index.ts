@@ -13,7 +13,7 @@ type SearchEventsOptions = {
   eventType: 'courses' | 'groups';
 };
 
-const searchEvents = (options: SearchEventsOptions) => {
+const searchEvents = (options: SearchEventsOptions): (Course | StudyGroup)[] => {
   let events: (Course | StudyGroup)[];
   if (options.eventType === 'courses') events = courses;
   if (options.eventType === 'groups') events = studyGroups;
@@ -22,5 +22,12 @@ const searchEvents = (options: SearchEventsOptions) => {
     if (typeof options.query === 'number') {
       return options.query === event.id;
     }
+    if (typeof options.query === 'string') {
+      return event.keywords.includes(options.query);
+    }
   });
+  console.log(filteredEvents);
+  return filteredEvents;
 };
+
+searchEvents({ query: 2, eventType: 'groups' });
